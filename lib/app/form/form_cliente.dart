@@ -3,6 +3,7 @@ import 'package:eng3_cliente/app/domain_models/dependente.dart';
 import 'package:eng3_cliente/app/domain_models/endereco.dart';
 import 'package:eng3_cliente/app/domain_models/estado.dart';
 import 'package:eng3_cliente/app/domain_models/parentesco.dart';
+import 'package:eng3_cliente/app/utils/validators.dart';
 import 'package:eng3_cliente/app/widgets/app_dropdown_button.dart';
 import 'package:flutter/material.dart';
 
@@ -79,14 +80,10 @@ class _FormClienteState extends State<FormCliente> {
                             labelText: 'Nome',
                             keyboardType: TextInputType.text,
                             controller: nomeController,
-                            validator: (value) {
-                              if (value != null) {
-                                if (value.isEmpty) {
-                                  return 'nome inválido';
-                                }
-                              }
-                              return null; // Continuar aqui...
-                            },
+                            validator: (value) => Validators.emptyField(
+                              value: value,
+                              returnMessage: 'Nome inválido',
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -97,9 +94,10 @@ class _FormClienteState extends State<FormCliente> {
                             labelText: 'CPF',
                             keyboardType: TextInputType.number,
                             controller: cpfController,
-                            validator: (value) {
-                              return 'CPF inválido';
-                            },
+                            validator: (value) => Validators.emptyField(
+                              value: value,
+                              returnMessage: 'CPF inválido',
+                            ),
                           ),
                         ),
                       ],
@@ -113,9 +111,10 @@ class _FormClienteState extends State<FormCliente> {
                         labelText: 'Crédito',
                         keyboardType: TextInputType.number,
                         controller: creditoController,
-                        validator: (value) {
-                          return 'Crédito inválido';
-                        },
+                        validator: (value) => Validators.emptyField(
+                          value: value,
+                          returnMessage: 'Crédito inválido',
+                        ),
                       ),
                     ),
                     const Divider(
@@ -134,9 +133,10 @@ class _FormClienteState extends State<FormCliente> {
                             labelText: 'Logradouro',
                             keyboardType: TextInputType.text,
                             controller: logradouroController,
-                            validator: (value) {
-                              return 'Logradouro inválido';
-                            },
+                            validator: (value) => Validators.emptyField(
+                              value: value,
+                              returnMessage: 'Logradouro inválido',
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -148,9 +148,10 @@ class _FormClienteState extends State<FormCliente> {
                             list: Constants.estados,
                             dropdownValue: Constants.estados.first,
                             selectedItem: (value) => estadoValue = value,
-                            validator: (value) {
-                              return 'Estado inválido';
-                            },
+                            validator: (value) => Validators.emptyField(
+                              value: value,
+                              returnMessage: 'Estado inválido',
+                            ),
                           ),
                         ),
                       ],
@@ -165,9 +166,10 @@ class _FormClienteState extends State<FormCliente> {
                             labelText: 'Cidade',
                             keyboardType: TextInputType.text,
                             controller: cidadeController,
-                            validator: (value) {
-                              return 'Cidade inválida';
-                            },
+                            validator: (value) => Validators.emptyField(
+                              value: value,
+                              returnMessage: 'Cidade inválida',
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -178,9 +180,10 @@ class _FormClienteState extends State<FormCliente> {
                             labelText: 'Cep',
                             keyboardType: TextInputType.number,
                             controller: cepController,
-                            validator: (value) {
-                              return 'Crédito inválido';
-                            },
+                            validator: (value) => Validators.emptyField(
+                              value: value,
+                              returnMessage: 'Cep inválido',
+                            ),
                           ),
                         ),
                       ],
@@ -194,9 +197,10 @@ class _FormClienteState extends State<FormCliente> {
                         labelText: 'Complemento',
                         keyboardType: TextInputType.number,
                         controller: complementoController,
-                        validator: (value) {
-                          return 'Complemento inválido';
-                        },
+                        validator: (value) => Validators.emptyField(
+                          value: value,
+                          returnMessage: 'Complemento inválido',
+                        ),
                       ),
                     ),
                     const Divider(
@@ -215,9 +219,10 @@ class _FormClienteState extends State<FormCliente> {
                             labelText: 'Dependente 1',
                             keyboardType: TextInputType.text,
                             controller: dependenteUmController,
-                            validator: (value) {
-                              return 'Dependente 1 inválido';
-                            },
+                            validator: (value) => Validators.emptyField(
+                              value: value,
+                              returnMessage: 'Dependente inválido',
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -229,9 +234,10 @@ class _FormClienteState extends State<FormCliente> {
                             list: Constants.parentesco,
                             dropdownValue: Constants.parentesco.first,
                             selectedItem: (value) => parentescoDependenteUm = value,
-                            validator: (value) {
-                              return 'Parentesco inválido';
-                            },
+                            validator: (value) => Validators.emptyField(
+                              value: value,
+                              returnMessage: 'Parentesco inválido',
+                            ),
                           ),
                         ),
                       ],
@@ -246,9 +252,10 @@ class _FormClienteState extends State<FormCliente> {
                             labelText: 'Dependente 2',
                             keyboardType: TextInputType.text,
                             controller: dependenteDoisController,
-                            validator: (value) {
-                              return 'Dependente 2 inválido';
-                            },
+                            validator: (value) => Validators.emptyField(
+                              value: value,
+                              returnMessage: 'Dependente inválido',
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -260,9 +267,10 @@ class _FormClienteState extends State<FormCliente> {
                             list: Constants.parentesco,
                             dropdownValue: Constants.parentesco.first,
                             selectedItem: (value) => parentescoDependenteDois = value,
-                            validator: (value) {
-                              return 'Parentesco inválido';
-                            },
+                            validator: (value) => Validators.emptyField(
+                              value: value,
+                              returnMessage: 'Parentesco inválido',
+                            ),
                           ),
                         ),
                       ],

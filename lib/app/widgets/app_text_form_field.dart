@@ -25,7 +25,6 @@ class AppTextFormField extends StatelessWidget {
       cursorColor: Colors.black45,
       keyboardType: keyboardType,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      autocorrect: true,
       decoration: InputDecoration(
         labelText: labelText,
         labelStyle: const TextStyle(

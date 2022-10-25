@@ -34,6 +34,7 @@ class _AppDropdownButtonFormFieldState extends State<AppDropdownButtonFormField>
     var list = widget.list ?? [];
     return DropdownButtonFormField<String>(
       validator: widget.validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       value: initialValue,
       isExpanded: true,
       decoration: InputDecoration(
