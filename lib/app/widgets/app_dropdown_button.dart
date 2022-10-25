@@ -5,6 +5,7 @@ class AppDropdownButtonFormField extends StatefulWidget {
   final List<String>? list;
   final String? dropdownValue;
   final String? Function(String? value)? selectedItem;
+  final String? Function(String?)? validator;
 
   const AppDropdownButtonFormField({
     super.key,
@@ -12,6 +13,7 @@ class AppDropdownButtonFormField extends StatefulWidget {
     required this.dropdownValue,
     this.labelText,
     this.selectedItem,
+    this.validator,
   });
 
   @override
@@ -31,6 +33,7 @@ class _AppDropdownButtonFormFieldState extends State<AppDropdownButtonFormField>
   Widget build(BuildContext context) {
     var list = widget.list ?? [];
     return DropdownButtonFormField<String>(
+      validator: widget.validator,
       value: initialValue,
       isExpanded: true,
       decoration: InputDecoration(
@@ -47,6 +50,22 @@ class _AppDropdownButtonFormFieldState extends State<AppDropdownButtonFormField>
           ),
         ),
         focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(
+            5,
+          ),
+          borderSide: const BorderSide(
+            color: Colors.black45,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(
+            5,
+          ),
+          borderSide: const BorderSide(
+            color: Colors.red,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
             5,
           ),

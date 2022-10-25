@@ -12,4 +12,6 @@ class Endereco {
     this.cep,
     this.cidade,
   });
+
+  void validarEndereco() {}
 }

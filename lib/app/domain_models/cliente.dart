@@ -41,7 +41,12 @@ class Cliente extends Pessoa {
     print(list);
   }
 
-  void validarDadosObrigatorios() {}
+  bool validarDadosObrigatorios({required bool validate}) {
+    if (validate) {
+      return true;
+    }
+    return false;
+  }
 
   void validarCpf() {}
 

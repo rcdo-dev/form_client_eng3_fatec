@@ -20,6 +20,8 @@ class FormCliente extends StatefulWidget {
 }
 
 class _FormClienteState extends State<FormCliente> {
+  final _formKey = GlobalKey<FormState>();
+
   TextEditingController? nomeController;
   TextEditingController? cpfController;
   TextEditingController? creditoController;
@@ -50,233 +52,283 @@ class _FormClienteState extends State<FormCliente> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SizedBox(
-          width: 600.0,
-          height: double.infinity,
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  //------------------------------------------------------------------
-                  const Divider(
-                    height: 40.0,
-                  ),
-                  const Text('Dados'),
-                  const SizedBox(
-                    height: 5.0,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: AppTextFormField(
-                          labelText: 'Nome',
-                          keyboardType: TextInputType.text,
-                          controller: nomeController,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 40.0,
-                      ),
-                      Expanded(
-                        child: AppTextFormField(
-                          labelText: 'CPF',
-                          keyboardType: TextInputType.number,
-                          controller: cpfController,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 25.0,
-                  ),
-                  SizedBox(
-                    width: 230.0,
-                    child: AppTextFormField(
-                      labelText: 'Crédito',
-                      keyboardType: TextInputType.number,
-                      controller: creditoController,
+    return Form(
+      key: _formKey,
+      child: Scaffold(
+        body: Center(
+          child: SizedBox(
+            width: 600.0,
+            height: double.infinity,
+            child: Center(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    //------------------------------------------------------------------
+                    const Divider(
+                      height: 40.0,
                     ),
-                  ),
-                  const Divider(
-                    height: 40.0,
-                  ),
-
-                  //------------------------------------------------------------------
-                  const Text('Endereço'),
-                  const SizedBox(
-                    height: 5.0,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: AppTextFormField(
-                          labelText: 'Logradouro',
-                          keyboardType: TextInputType.text,
-                          controller: logradouroController,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 40.0,
-                      ),
-                      Expanded(
-                        child: AppDropdownButtonFormField(
-                          labelText: 'Estado',
-                          list: Constants.estados,
-                          dropdownValue: Constants.estados.first,
-                          selectedItem: (value) => estadoValue = value,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 25.0,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: AppTextFormField(
-                          labelText: 'Cidade',
-                          keyboardType: TextInputType.text,
-                          controller: cidadeController,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 40.0,
-                      ),
-                      Expanded(
-                        child: AppTextFormField(
-                          labelText: 'Cep',
-                          keyboardType: TextInputType.number,
-                          controller: cepController,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 25.0,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: AppTextFormField(
-                      labelText: 'Complemento',
-                      keyboardType: TextInputType.number,
-                      controller: complementoController,
+                    const Text('Dados'),
+                    const SizedBox(
+                      height: 5.0,
                     ),
-                  ),
-                  const Divider(
-                    height: 40.0,
-                  ),
-
-                  //------------------------------------------------------------------
-                  const Text('Dependentes'),
-                  const SizedBox(
-                    height: 5.0,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: AppTextFormField(
-                          labelText: 'Dependente 1',
-                          keyboardType: TextInputType.text,
-                          controller: dependenteUmController,
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: AppTextFormField(
+                            labelText: 'Nome',
+                            keyboardType: TextInputType.text,
+                            controller: nomeController,
+                            validator: (value) {
+                              if (value != null) {
+                                if (value.isEmpty) {
+                                  return 'nome inválido';
+                                }
+                              }
+                              return null; // Continuar aqui...
+                            },
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 40.0,
-                      ),
-                      Expanded(
-                        child: AppDropdownButtonFormField(
-                          labelText: 'Parentesco',
-                          list: Constants.parentesco,
-                          dropdownValue: Constants.parentesco.first,
-                          selectedItem: (value) => parentescoDependenteUm = value,
+                        const SizedBox(
+                          width: 40.0,
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 25.0,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: AppTextFormField(
-                          labelText: 'Dependente 2',
-                          keyboardType: TextInputType.text,
-                          controller: dependenteDoisController,
+                        Expanded(
+                          child: AppTextFormField(
+                            labelText: 'CPF',
+                            keyboardType: TextInputType.number,
+                            controller: cpfController,
+                            validator: (value) {
+                              return 'CPF inválido';
+                            },
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 40.0,
-                      ),
-                      Expanded(
-                        child: AppDropdownButtonFormField(
-                          labelText: 'Parentesco',
-                          list: Constants.parentesco,
-                          dropdownValue: Constants.parentesco.first,
-                          selectedItem: (value) => parentescoDependenteDois = value,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    height: 40.0,
-                  ),
-
-                  //------------------------------------------------------------------
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          var credito = creditoController?.text;
-
-                          Cliente cliente = Cliente(
-                            nome: nomeController?.text,
-                            cpf: cpfController?.text,
-                            credito: double.tryParse(
-                              credito.toString(),
-                            ),
-                            endereco: Endereco(
-                              logradouro: logradouroController?.text,
-                              cep: cepController?.text,
-                              complemento: complementoController?.text,
-                              cidade: Cidade(
-                                nome: cidadeController?.text,
-                                estado: Estado(
-                                  nome: estadoValue,
-                                ),
-                              ),
-                            ),
-                            dependentes: [
-                              Dependente(
-                                nome: dependenteUmController?.text,
-                                parentesco: Parentesco(
-                                  tipoParentesco: parentescoDependenteUm,
-                                ),
-                              ),
-                              Dependente(
-                                nome: dependenteDoisController?.text,
-                                parentesco: Parentesco(
-                                  tipoParentesco: parentescoDependenteDois,
-                                ),
-                              )
-                            ],
-                          );
-
-                          print(cliente.dependentes?[1].parentesco?.tipoParentesco);
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                    SizedBox(
+                      width: 230.0,
+                      child: AppTextFormField(
+                        labelText: 'Crédito',
+                        keyboardType: TextInputType.number,
+                        controller: creditoController,
+                        validator: (value) {
+                          return 'Crédito inválido';
                         },
-                        icon: const Icon(Icons.save),
-                        label: const Text(
-                          'Salvar',
-                        ),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    const Divider(
+                      height: 40.0,
+                    ),
+
+                    //------------------------------------------------------------------
+                    const Text('Endereço'),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: AppTextFormField(
+                            labelText: 'Logradouro',
+                            keyboardType: TextInputType.text,
+                            controller: logradouroController,
+                            validator: (value) {
+                              return 'Logradouro inválido';
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 40.0,
+                        ),
+                        Expanded(
+                          child: AppDropdownButtonFormField(
+                            labelText: 'Estado',
+                            list: Constants.estados,
+                            dropdownValue: Constants.estados.first,
+                            selectedItem: (value) => estadoValue = value,
+                            validator: (value) {
+                              return 'Estado inválido';
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: AppTextFormField(
+                            labelText: 'Cidade',
+                            keyboardType: TextInputType.text,
+                            controller: cidadeController,
+                            validator: (value) {
+                              return 'Cidade inválida';
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 40.0,
+                        ),
+                        Expanded(
+                          child: AppTextFormField(
+                            labelText: 'Cep',
+                            keyboardType: TextInputType.number,
+                            controller: cepController,
+                            validator: (value) {
+                              return 'Crédito inválido';
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: AppTextFormField(
+                        labelText: 'Complemento',
+                        keyboardType: TextInputType.number,
+                        controller: complementoController,
+                        validator: (value) {
+                          return 'Complemento inválido';
+                        },
+                      ),
+                    ),
+                    const Divider(
+                      height: 40.0,
+                    ),
+
+                    //------------------------------------------------------------------
+                    const Text('Dependentes'),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: AppTextFormField(
+                            labelText: 'Dependente 1',
+                            keyboardType: TextInputType.text,
+                            controller: dependenteUmController,
+                            validator: (value) {
+                              return 'Dependente 1 inválido';
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 40.0,
+                        ),
+                        Expanded(
+                          child: AppDropdownButtonFormField(
+                            labelText: 'Parentesco',
+                            list: Constants.parentesco,
+                            dropdownValue: Constants.parentesco.first,
+                            selectedItem: (value) => parentescoDependenteUm = value,
+                            validator: (value) {
+                              return 'Parentesco inválido';
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: AppTextFormField(
+                            labelText: 'Dependente 2',
+                            keyboardType: TextInputType.text,
+                            controller: dependenteDoisController,
+                            validator: (value) {
+                              return 'Dependente 2 inválido';
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 40.0,
+                        ),
+                        Expanded(
+                          child: AppDropdownButtonFormField(
+                            labelText: 'Parentesco',
+                            list: Constants.parentesco,
+                            dropdownValue: Constants.parentesco.first,
+                            selectedItem: (value) => parentescoDependenteDois = value,
+                            validator: (value) {
+                              return 'Parentesco inválido';
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Divider(
+                      height: 40.0,
+                    ),
+
+                    //------------------------------------------------------------------
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            var credito = creditoController?.text;
+
+                            Cliente cliente = Cliente(
+                              nome: nomeController?.text,
+                              cpf: cpfController?.text,
+                              credito: double.tryParse(
+                                credito.toString(),
+                              ),
+                              endereco: Endereco(
+                                logradouro: logradouroController?.text,
+                                cep: cepController?.text,
+                                complemento: complementoController?.text,
+                                cidade: Cidade(
+                                  nome: cidadeController?.text,
+                                  estado: Estado(
+                                    nome: estadoValue,
+                                  ),
+                                ),
+                              ),
+                              dependentes: [
+                                Dependente(
+                                  nome: dependenteUmController?.text,
+                                  parentesco: Parentesco(
+                                    tipoParentesco: parentescoDependenteUm,
+                                  ),
+                                ),
+                                Dependente(
+                                  nome: dependenteDoisController?.text,
+                                  parentesco: Parentesco(
+                                    tipoParentesco: parentescoDependenteDois,
+                                  ),
+                                )
+                              ],
+                            );
+
+                            if (!cliente.validarDadosObrigatorios(validate: _formKey.currentState!.validate())) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Preencha os dados correntamente!'),
+                                ),
+                              );
+                            }
+                          },
+                          icon: const Icon(Icons.save),
+                          label: const Text(
+                            'Salvar',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
