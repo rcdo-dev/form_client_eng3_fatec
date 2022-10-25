@@ -1,6 +1,6 @@
 import 'package:eng3_cliente/app/domain_models/parentesco.dart';
 
-import 'pessoa.dart';
+import 'supper_class/pessoa.dart';
 
 class Dependente extends Pessoa {
   final Parentesco? parentesco;

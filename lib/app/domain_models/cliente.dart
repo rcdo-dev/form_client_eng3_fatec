@@ -2,7 +2,7 @@ import 'package:eng3_cliente/app/domain_models/dependente.dart';
 import 'package:eng3_cliente/app/domain_models/endereco.dart';
 import 'package:eng3_cliente/app/domain_models/parentesco.dart';
 
-import 'pessoa.dart';
+import 'supper_class/pessoa.dart';
 
 class Cliente extends Pessoa {
   double? credito;
