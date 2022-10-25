@@ -33,14 +33,15 @@ class Cliente extends Pessoa {
           list.add(dependente);
         }
       } else {
-        print('Número máximo de dependentes atingido!');
+        // print('Número máximo de dependentes atingido!');
       }
     } else {
       throw Exception('Lista com valor nulo!');
     }
-    print(list);
+    // print(list);
   }
 
+  // Method ok.
   bool validarDadosObrigatorios({required bool validate}) {
     if (validate) {
       return true;

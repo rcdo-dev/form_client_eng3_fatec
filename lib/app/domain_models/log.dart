@@ -9,5 +9,7 @@ class Log {
     this.date,
   });
 
-  void gerarLog({required Cliente cliente}) {}
+  void gerarLog({required Cliente cliente}) {
+    /// Criar arquivo TXT com as informações...
+  }
 }

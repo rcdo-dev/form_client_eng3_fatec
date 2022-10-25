@@ -322,8 +322,9 @@ class _FormClienteState extends State<FormCliente> {
 
                             if (!cliente.validarDadosObrigatorios(validate: _formKey.currentState!.validate())) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Preencha os dados correntamente!'),
+                                SnackBar(
+                                  backgroundColor: Colors.red[700],
+                                  content: const Text('Preencha os dados correntamente!'),
                                 ),
                               );
                             }
