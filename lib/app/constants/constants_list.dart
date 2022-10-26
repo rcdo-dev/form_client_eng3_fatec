@@ -1,4 +1,4 @@
-class Constants {
+class ConstantsList {
   static final List<String> estados = [
     '',
     'Espirito Santo',

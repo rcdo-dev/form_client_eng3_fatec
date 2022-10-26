@@ -7,7 +7,7 @@ import 'package:eng3_cliente/app/utils/validators.dart';
 import 'package:eng3_cliente/app/widgets/app_dropdown_button.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/constants.dart';
+import '../constants/constants_list.dart';
 import '../domain_models/cidade.dart';
 import '../widgets/app_text_form_field.dart';
 
@@ -59,7 +59,7 @@ class _FormClienteState extends State<FormCliente> {
         body: Center(
           child: SizedBox(
             width: 600.0,
-            height: double.infinity,
+            height: double.infinity, // err height
             child: Center(
               child: SingleChildScrollView(
                 child: Column(
@@ -145,8 +145,8 @@ class _FormClienteState extends State<FormCliente> {
                         Expanded(
                           child: AppDropdownButtonFormField(
                             labelText: 'Estado',
-                            list: Constants.estados,
-                            dropdownValue: Constants.estados.first,
+                            list: ConstantsList.estados,
+                            dropdownValue: ConstantsList.estados.first,
                             selectedItem: (value) => estadoValue = value,
                             validator: (value) => Validators.emptyField(
                               value: value,
@@ -231,8 +231,8 @@ class _FormClienteState extends State<FormCliente> {
                         Expanded(
                           child: AppDropdownButtonFormField(
                             labelText: 'Parentesco',
-                            list: Constants.parentesco,
-                            dropdownValue: Constants.parentesco.first,
+                            list: ConstantsList.parentesco,
+                            dropdownValue: ConstantsList.parentesco.first,
                             selectedItem: (value) => parentescoDependenteUm = value,
                             validator: (value) => Validators.emptyField(
                               value: value,
@@ -264,8 +264,8 @@ class _FormClienteState extends State<FormCliente> {
                         Expanded(
                           child: AppDropdownButtonFormField(
                             labelText: 'Parentesco',
-                            list: Constants.parentesco,
-                            dropdownValue: Constants.parentesco.first,
+                            list: ConstantsList.parentesco,
+                            dropdownValue: ConstantsList.parentesco.first,
                             selectedItem: (value) => parentescoDependenteDois = value,
                             validator: (value) => Validators.emptyField(
                               value: value,
@@ -304,30 +304,24 @@ class _FormClienteState extends State<FormCliente> {
                                   ),
                                 ),
                               ),
-                              dependentes: [
-                                Dependente(
-                                  nome: dependenteUmController?.text,
-                                  parentesco: Parentesco(
-                                    tipoParentesco: parentescoDependenteUm,
-                                  ),
+                              dependenteUm: Dependente(
+                                nome: dependenteUmController?.text,
+                                parentesco: Parentesco(
+                                  tipoParentesco: parentescoDependenteUm,
                                 ),
-                                Dependente(
-                                  nome: dependenteDoisController?.text,
-                                  parentesco: Parentesco(
-                                    tipoParentesco: parentescoDependenteDois,
-                                  ),
-                                )
-                              ],
+                              ),
                             );
 
-                            if (!cliente.validarDadosObrigatorios(validate: _formKey.currentState!.validate())) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  backgroundColor: Colors.red[700],
-                                  content: const Text('Preencha os dados correntamente!'),
-                                ),
-                              );
-                            }
+                            cliente.salvar(cliente: cliente);
+                            // if (cliente.validarDadosObrigatorios(validate: _formKey.currentState!.validate())) {
+                            // } else {
+                            //   ScaffoldMessenger.of(context).showSnackBar(
+                            //     SnackBar(
+                            //       backgroundColor: Colors.red[700],
+                            //       content: const Text('Preencha os dados correntamente!'),
+                            //     ),
+                            //   );
+                            // }
                           },
                           icon: const Icon(Icons.save),
                           label: const Text(
